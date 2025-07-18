@@ -1,0 +1,40 @@
+repos:
+  - repo: https://github.com/asottile/seed-isort-config
+    rev: v2.2.0  # Updated to the latest stable version
+    hooks:
+      - id: seed-isort-config
+
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1  # Updated version
+    hooks:
+      - id: isort
+        args: ["--profile", "black"]
+        language_version: python3.12
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0  # Updated version
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: debug-statements
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0  # Updated version
+    hooks:
+      - id: flake8
+        language_version: python3.12
+        args: [--max-line-length=180]
+
+  - repo: https://github.com/psf/black
+    rev: 25.1.0  # Updated version
+    hooks:
+      - id: black
+        language_version: python3.12
+
+  - repo: local
+    hooks:
+      - id: requirements
+        name: generate-requirements
+        entry: bin/generate-requirements.sh
+        language: script

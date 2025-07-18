@@ -1,7 +1,7 @@
 # no-ai-team-2
 The intent of this challenge is to assess measurable efficiencies gained through the use of AI toolsets without introducing selection bias by using actual work at G360 for which subject matter expertise may come into play.
 
-Note that the task outlined here intentionally provides some ambiguity that would require research, not just coding know-how. 
+Note that the task outlined here intentionally provides some ambiguity that would require research, not just coding know-how.
 
 As part of the challenge, participants will be divided into three categories:
 
@@ -23,11 +23,11 @@ Expose the following endpoints:
 
 Endpoint #1
 
-Accepts 
+Accepts
 
 A start and end date.
 
-Returns 
+Returns
 
 A list of unique commit authors within the date constraints supplied.
 
@@ -37,7 +37,7 @@ Accepts
 
 A start and end date.
 
-Returns 
+Returns
 
 A list of commit SHAs and titles associated with commits that have a significant deviation based on a z-score > 2 from the mean total changes across all commits within the date range provided.
 
@@ -51,7 +51,7 @@ A metric_type parameter with the following enumerated values: commits, additions
 
 An OPTIONAL author parameter. When this parameter is provided, it should filter the results to the supplied author.
 
-Returns 
+Returns
 
 A JSON data structure that represents Sunday through Saturday and the sum of ALL of the associated activity (based on the dates, enumeration, and optionally the author passed in) on that day for every occurrence of that day between the dates supplied.
 
@@ -65,13 +65,13 @@ Accepts
 
 A start and end date.
 
-Returns 
+Returns
 
 A JSON data structure detailing occurrences of words in commit messages (for commits within the dates provided) and their frequency, eliminating common “stop words” such as “the”, “and”, etc.
 
 Sourcing Your Data
 
-Commit data should be sourced from OpenRA public repo or any public repo with a similar long-term and active commit history. 
+Commit data should be sourced from OpenRA public repo or any public repo with a similar long-term and active commit history.
 
 Make use of the GraphQL endpoint of GitHub’s API (https://api.github.com/graphql).
 
@@ -132,7 +132,7 @@ Creativity (e.g. apply a marketing spin or creative branding on it using AI…or
 
 Extra credit items (e.g. show us how much of an over-achiever you are)
 
- 
+
 
 Participants
 
@@ -144,7 +144,7 @@ Alex S
 
 Rebecca
 
-Al (half-day) 
+Al (half-day)
 
 
 Team 2
@@ -155,7 +155,7 @@ Ed Hernandez
 
 Afeefa
 
- 
+
 
 Hybrid AI:
 
@@ -185,7 +185,7 @@ Emmanuel
 
 Joel
 
- 
+
 
 No AI:
 
