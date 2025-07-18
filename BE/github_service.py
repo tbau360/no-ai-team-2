@@ -1,7 +1,7 @@
 import faker
 
 author_list = [
-    {"name": faker.Faker().name(), "email": faker.Faker().email()} for _ in range(5)
+    {"name": faker.Faker().name(), "email": faker.Faker().email()} for _ in range(10)
 ]
 
 
@@ -14,10 +14,7 @@ class GithubService:
         }
 
     def fetch_authors_stub(self):
-        return [
-            {"name": faker.Faker().name(), "email": faker.Faker().email()}
-            for _ in range(5)
-        ]
+        return author_list
 
     def fetch_outliers_sub(self):
         return [
