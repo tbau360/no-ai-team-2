@@ -168,3 +168,6 @@ conf/*
 !conf/.release
 !conf/.production
 !conf/.test
+
+
+FE/node_modules
