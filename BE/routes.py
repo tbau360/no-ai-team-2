@@ -12,12 +12,6 @@ class DateRange(BaseModel):
     start_date: datetime  # ISO format date string
     end_date: datetime
 
-    # @field_validator('start_date', 'end_date', mode='before')
-    # def parse_datetime(cls, value):
-    #     if isinstance(value, str):
-    #         return datetime.fromisoformat(value)
-    #     return value
-
 
 @router.get("/health")
 def health_check():
@@ -47,8 +41,10 @@ def get_authors(date_range: DateRange):
 @router.post("/outliers")
 def get_outliers(date_range: DateRange):
     github = GithubService()
-    results = github.fetch_outliers_sub()
+    # results = github.fetch_outliers_stub()
+    results = github.search_outliers(date_range.start_date, date_range.end_date)
     print(results)
+
     return results
 
 
