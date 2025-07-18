@@ -1,0 +1,59 @@
+#title{
+
+}
+
+#container{
+    display: flex;
+    width: 100%;
+}
+
+.container-element{
+    display: inline-block;
+    width: 250px
+}
+
+#table-container{
+    display: block;
+    margin-bottom: 20px;
+}
+
+table{
+    margin-top: 20px;
+    border: solid 1px black;
+    width:800px
+}
+
+th{
+    width: 14%;
+}
+
+th:not(:first-child){
+
+    border-left: solid 1px black;
+}
+
+tr{
+    border-top: solid 1px black;
+    border-bottom: solid 1px black;
+}
+
+td{
+    text-align: center;
+    height:50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: solid 1px black;
+    border-left: solid 1px black;
+}
+
+td:first-child{
+    border-left: none;
+}
+
+button{
+    width: 100px;
+    height: 30px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
