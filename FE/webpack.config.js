@@ -3,7 +3,7 @@ const path = require('path')
 
 module.exports = {
     // Define the entry point for your application
-    entry: './src/index.jsx', 
+    entry: './src/index.jsx',
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: 'index.js',
@@ -11,7 +11,7 @@ module.exports = {
     },
     resolve: {
       // Allow Webpack to resolve .js and .jsx extensions
-      extensions: ['.js', '.jsx'], 
+      extensions: ['.js', '.jsx'],
     },
     module: {
         rules: [
