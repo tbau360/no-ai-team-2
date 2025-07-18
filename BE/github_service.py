@@ -1,3 +1,5 @@
+import math
+
 import faker
 
 author_list = [
@@ -32,6 +34,18 @@ class GithubService:
                 },
             }
             for x in range(5)
+        ]
+
+    def fetch_word_cloud_stub(self):
+        return [
+            {
+                "word": faker.Faker().word(),
+                "count": faker.Faker().pyint(
+                    min_value=math.floor(math.log(math.fabs(x - 10) + 1) + 1),
+                    max_value=10,
+                ),
+            }
+            for x in range(30)
         ]
 
     def fetch_authors(self, start_date, end_date):

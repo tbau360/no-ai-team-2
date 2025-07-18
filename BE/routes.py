@@ -59,6 +59,7 @@ def get_snapshot(type: str):
 
 
 # Endpoint #4
-@router.get("/commit-search-count")
-def get_commit_search_count():
-    return {}
+@router.post("/commit-search-count")
+def get_commit_search_count(date_range: DateRange):
+    github = GithubService()
+    return github.fetch_word_cloud_stub()
