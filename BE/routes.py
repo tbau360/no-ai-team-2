@@ -1,6 +1,22 @@
+from datetime import datetime
+
 from fastapi import APIRouter
+from pydantic import BaseModel
+
+from BE.github_service import GithubService
 
 router = APIRouter(prefix="/api")
+
+
+class DateRange(BaseModel):
+    start_date: datetime  # ISO format date string
+    end_date: datetime
+
+    # @field_validator('start_date', 'end_date', mode='before')
+    # def parse_datetime(cls, value):
+    #     if isinstance(value, str):
+    #         return datetime.fromisoformat(value)
+    #     return value
 
 
 @router.get("/health")
@@ -14,21 +30,26 @@ def test_endpoint():
 
 
 # Endpoint #1
-@router.get("/authors")
-def get_authors():
-    return [{"name": "Dummy Author 1", "email": "dummy@author.com"}]
+@router.post("/authors")
+# {start_date: str, end_date: str}
+def get_authors(date_range: DateRange):
+
+    github = GithubService()
+    print(f"start_date {date_range.start_date}, end_date {date_range.end_date}")
+
+    # results = github.fetch_authors(date_range.start_date, date_range.end_date)
+    results = github.fetch_authors_stub()
+    print(results)
+    return results
 
 
 # Endpoint #2
-@router.get("/outliers")
-def get_outliers():
-    return [
-        {
-            "sha": 123456,
-            "title": "Large commit message",
-            "author": {"name": "Dummy Author 1", "email": "dummy@author.com"},
-        }
-    ]
+@router.post("/outliers")
+def get_outliers(date_range: DateRange):
+    github = GithubService()
+    results = github.fetch_outliers_sub()
+    print(results)
+    return results
 
 
 # Endpoint #3
