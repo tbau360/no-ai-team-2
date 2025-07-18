@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 // require('dotenv').config()
 import { getCommitAuthors } from "../../endpoints/getCommitAuthors";
 import { getCommitOutliers } from "../../endpoints/getCommitOutliers";
+import { getCommitWordCounts } from "../../endpoints/getCommitWordCounts";
 
 export function App() {
   const [startDate, setStartDate] = useState(new Date(new Date().setDate(new Date().getDate() - 30)));
@@ -13,6 +14,7 @@ export function App() {
   const [author, setAuthor] = useState('')
   const [authorList, setAuthorList] = useState([])
   const [commitOutliers, setCommitOutliers] = useState([])
+  const [commitWordCounts, setCommitWordCounts] = useState([])
 
   const words = [
     { text: "hello", value: 12 },
@@ -41,6 +43,15 @@ export function App() {
   setCommitOutliers(data)
   }
 
+  async function fetchCommitWordCounts() {
+    let data = await getCommitWordCounts({
+      "start_date": startDate.toISOString().split('T')[0],
+      "end_date": endDate.toISOString().split('T')[0]
+    })
+
+  setCommitWordCounts(data)
+  }
+
  useEffect(() => {
     fetchCommitOutliers()
   }, [setCommitOutliers])
@@ -62,7 +73,10 @@ export function App() {
             <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
           </div>
           <div className="container-element">
-            <button onClick={()=>fetchCommitOutliers()}>Search</button>
+            <button onClick={()=>{
+              fetchCommitOutliers();
+              fetchCommitWordCounts();
+            }}>Search</button>
           </div>
         </div>
       </div>
@@ -72,6 +86,9 @@ export function App() {
             <tr>
               <th>
                 Author
+              </th>
+              <th>
+                Date
               </th>
               <th>
                 Message
@@ -96,6 +113,7 @@ export function App() {
               commitOutliers != [] ? commitOutliers.map((co)=>(
                 <tr>
                   <td>{co.author.name}</td>
+                  <td>{co.date.split('T')[0]}</td>
                   <td>{co.message}</td>
                   <td>{co.sha}</td>
                   <td>{co.additions}</td>
@@ -128,7 +146,14 @@ export function App() {
             ) : null
           }
         </select>
-      </div>
+        </div>
+        <div style={{width: "400px", display: "block", overflowX: "wrap", marginTop:"10px"}}>
+        {
+          commitWordCounts != [] ? commitWordCounts.map((cwc)=>(
+            <span style={{fontSize:cwc.count*6, backgroundColor:"black", color:"white", borderRadius:"30px"}}>{cwc.word}</span>
+          )) : null
+        }
+        </div>
     </div>
   );
 }
